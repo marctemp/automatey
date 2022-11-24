@@ -1,6 +1,8 @@
 const server = require('./server')
 
 const init = async () => {
+  await server.register(require('./plugins/views'))
+
   await server.start()
   console.log('Server running on %s', server.info.uri)
 }

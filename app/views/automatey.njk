@@ -1,0 +1,60 @@
+<div class="govuk-grid-column-one-half">
+    <div id="flow">
+        <div id="graphDiv">
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.0.0/mermaid.min.js"></script> <!-- Sensitive -->
+<script>
+    const buildGraphDefinition = () => {
+        const graphDefinition = []
+        graphDefinition.push('graph LR; \n')
+        graphDefinition.push(`schema.eventType[<strong>schema.service</strong>eventRaised ? parseJsonDate(eventRaised.eventRaised) : ''];`)
+        graphDefinition.push(`schema.eventType --> link.link;`)
+        graphDefinition.push(`style schema.eventType for externalProcess === true fill:#90cbf9, stroke:#001833, stroke-width:2px;`)
+        graphDefinition.push(`style schema.eventType fill:#3CB043, stroke:#234F1E, stroke-width:2px;`)
+        graphDefinition.push(`click schema.eventType "/event-projection-detail/projection.frn/projection.agreementNumber/projection.paymentRequestNumber?eventType=schema.eventType";`)
+        const gd= graphDefinition.join('')
+        console.log(gd)
+        return gd
+    }
+
+    const graphDef = buildGraphDefinition()
+    const graphDefinition = graphDef
+
+    const config = {
+        securityLevel: 'loose',
+        startOnLoad: true
+    }
+
+    mermaid.initialize(config)
+
+    const element = document.getElementById("graphDiv")
+
+    mermaid.render('theGraph', `
+    graph TD;
+    S-->Requirement-Identification;
+    Requirement-Identification-->BA-Analysis;
+    BA-Analysis-->Ticket-Created;
+    Ticket-Created-->Three-Amigos;
+    Three-Amigos-->Backlog-Refinement;
+    Backlog-Refinement-->Dev;
+    Dev-->Test;
+    Test-->Deploy;
+    Deploy-->E;
+    style S fill:#f357fc, stroke:#234F1E, stroke-width:2px;
+    style E fill:#f357fc, stroke:#234F1E, stroke-width:2px;
+    style Requirement-Identification fill:#3CB043, stroke:#234F1E, stroke-width:2px;
+    style BA-Analysis fill:#3CB043, stroke:#234F1E, stroke-width:2px;
+    style Ticket-Created fill:#c9d7ca, stroke:#234F1E, stroke-width:2px;
+    style Three-Amigos fill:#c9d7ca, stroke:#234F1E, stroke-width:2px;
+    style Backlog-Refinement fill:#c9d7ca, stroke:#234F1E, stroke-width:2px;
+    style Dev fill:#c9d7ca, stroke:#234F1E, stroke-width:2px;
+    style Test fill:#c9d7ca, stroke:#234F1E, stroke-width:2px;
+    style Deploy fill:#c9d7ca, stroke:#234F1E, stroke-width:2px;
+    `,
+    true)
+
+    
+</script>

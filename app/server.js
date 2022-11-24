@@ -6,6 +6,7 @@ const server = Hapi.server({
 })
 
 const routes = [].concat(
+  require('./routes/automatey'),
   require('./routes/healthy'),
   require('./routes/healthz')
 )

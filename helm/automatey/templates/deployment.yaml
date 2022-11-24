@@ -1,0 +1,8 @@
+{{- include "ffc-helm-library.deployment" (list . "automatey.deployment") -}}
+{{- define "automatey.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "ffc-helm-library.container" (list . "automatey.container") }}
+{{- end -}}
